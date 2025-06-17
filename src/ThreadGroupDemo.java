@@ -1,6 +1,8 @@
+import java.time.LocalTime;
+
 public class ThreadGroupDemo {
 
-    public static void main (String[] args) {
+    public static void main (String[] args) throws Exception {
 
         /*TASK1*/
 //        ThreadGroup MyGroup = new ThreadGroup("MyGroup");
@@ -75,10 +77,46 @@ public class ThreadGroupDemo {
 //        Group1.interrupt();
 //
         /*TASK3*/
+//    BankAccount bankAccount = new BankAccount();
+//
+//    Thread transction1 = new Thread( ()-> {
+//       bankAccount.deposit(4200);
+//    });
+//    Thread transction2 = new Thread( ()-> {
+//        bankAccount.withdraw(400);
+//    });
+//    Thread transction3 = new Thread( ()-> {
+//        bankAccount.deposit(8800);
+//    });
+//
+//    transction1.start();
+//    transction2.start();
+//    transction3.start();
+//    transction2.join();
+//    transction3.join();
+//    System.out.println("Amount in Bank Account : "+bankAccount.Amount);
 
+        /*TASK 4*/
+        Runtime runtime = Runtime.getRuntime();
+        System.out.println("Available processors :"+runtime.availableProcessors());
+        System.out.println("Total Memory : "+(runtime.totalMemory()/(1024*1024)));
+        System.out.println("Free Memory : "+(runtime.freeMemory()/(1024*1024)));
+
+        runtime.addShutdownHook(new Thread( ()-> {
+            System.out.println("Application Stopped at "+ LocalTime.now());
+        }));
+
+        System.out.println("Processes Completed");
     }
 
     public static class BankAccount {
-        
+        int Amount = 15000;
+        synchronized void deposit (int money) {
+            Amount += money;
+        }
+
+        synchronized void withdraw (int money) {
+            Amount -= money;
+        }
     }
 }
