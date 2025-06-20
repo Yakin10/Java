@@ -3,19 +3,22 @@ import java.io.*;
 public class Serialization {
     public static void main (String[] args) throws Exception {
         Student s1 = new Student(1,10,"Ram", "R@m123", "Defence School");
-        Student s2 = new Student(2, 10, "Shyam", "Shyam123");
+//        Student s2 = new Student(2, 10, "Shyam", "Shyam123");
 
+//        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\patel\\IdeaProjects\\JavaClasses\\student.txt"));
+//        oos.writeObject(s1);
+//        oos.writeObject(s2);
+//        oos.close();
+//
+//        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\patel\\IdeaProjects\\JavaClasses\\student.txt"));
+//        Student s3 = (Student) ois.readObject();
+//        s3.display();
+//        s3 = (Student)  ois.readObject();
+//        s3.display();
+        Student s2 = s1;
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\patel\\IdeaProjects\\JavaClasses\\student.txt"));
-        oos.writeObject(s1);
         oos.writeObject(s2);
         oos.close();
-
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\patel\\IdeaProjects\\JavaClasses\\student.txt"));
-        Student s3 = (Student) ois.readObject();
-        s3.display();
-        s3 = (Student)  ois.readObject();
-        s3.display();
-
     }
 
     public static class School {
