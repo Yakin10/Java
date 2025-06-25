@@ -4,14 +4,14 @@ public class SerializationInheritance {
 
     public static void main(String[] args) throws  Exception {
         /*Why is this not Taking the parameter I am giving*/
-        Employees EMP = new Employees(1,"Shyam", "No Department", 00);
-        Employees EMP2 = new Employees(2,"Ram","HR", 02);
-        EMP.display();
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\patel\\IdeaProjects\\JavaClasses\\Employees.txt"));
-        oos.writeObject(EMP);
-        oos.writeObject(EMP2);
-
-        oos.close();
+//        Employees EMP = new Employees(1,"Shyam", "No Department", 00);
+//        Employees EMP2 = new Employees(2,"Ram","HR", 02);
+//        //EMP.display();
+//        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\patel\\IdeaProjects\\JavaClasses\\Employees.txt"));
+//        oos.writeObject(EMP);
+//        oos.writeObject(EMP2);
+//
+//        oos.close();
 
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\patel\\IdeaProjects\\JavaClasses\\Employees.txt"));
         ois.readObject();
@@ -21,8 +21,8 @@ public class SerializationInheritance {
     }
 
     public static class Department implements Serializable {
-        static String Dept;
-        static int Dept_ID;
+        String Dept;
+        int Dept_ID;
 
         public Department(String dept, int deptid) {
             this.Dept = dept;
@@ -31,6 +31,7 @@ public class SerializationInheritance {
     }
 
     public static class Employees extends Department {
+        private static final long serialVersionUID = 1;
         int Emp_no;
         String Emp_name;
 
@@ -53,13 +54,8 @@ public class SerializationInheritance {
         }
 
         private void writeObject (ObjectOutputStream oos) throws IOException, ClassNotFoundException {
-            System.out.println("Write object dept : "+Dept);
-            if(Dept == "No Department") {
-                Dept = "Boss";
-                Dept_ID = 100;
-                oos.writeObject(Dept);
-                oos.writeObject(Dept_ID);
-            }
+            //System.out.println("Write object dept : "+Dept);
+
             oos.defaultWriteObject();
         }
 
